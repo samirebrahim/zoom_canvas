@@ -8,19 +8,10 @@ export interface RouteGroup {
     component
 }
 
-export const RouteGroups: RouteGroup[] = [
-    {group: 'campaign', path: '', component: CampaignComponent}
-];
 
-let routes: Routes = RouteGroups.map(item => {
-    return {
-        component: item.component,
-        data: {
-            shouldDetach: true
-        },
-        path: item.path
-    }
-});
+
+let routes: Routes = [    { path: '', component: CampaignComponent },
+];
 
 @NgModule({
     imports: [
