@@ -1,0 +1,55 @@
+<!-- <div class="canvas">
+    <div class="shape"></div>
+    <div class="zoom">
+        <ul>
+            <li class="zoom-in">+</li>
+            <li class="zoom-slide">
+                <div class="slide-marker"></div>
+            </li>
+            <li class="zoom-out">-</li>
+        </ul>
+    </div>
+</div> -->
+<style>
+    .canvas-container {
+  border: 1px solid black;
+  padding: 0px;
+}
+:host >>> canvas {
+  margin-bottom: -5px;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 30px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 30px;
+  background-color: #f5f5f5;
+  padding-top: 6px;
+}
+</style>
+
+<div class="container">
+ <div>  
+ </div>
+  <div class="canvas-container">
+    <zoomable-canvas 
+      [image]="image"
+      (topChange)="top = $event" (bottomChange)="bottom = $event" 
+      (leftChange)="left = $event" (rightChange)="right = $event"
+      [(centerX)]="centerX" [(centerY)]="centerY"
+      [(zoomLevel)]="zoomLevel" [maxZoom]="maxZoom" [minZoom]="0"
+      (canvasWidthChange)="canvasWidth = $event" (canvasHeightChange)="canvasHeight = $event"
+    ></zoomable-canvas>
+  </div>
+  <br />
+  <input type="range" min="0" step="0.05" max="{{ maxZoom }}" [(ngModel)]="zoomLevel"><br />
+  <b>Zoom Level:</b> {{ zoomLevel | number:'1.2-2' }}<br />
+  <b>Center:</b> ({{ centerX | number:'1.0-0' }}, {{ centerY | number:'1.0-0' }})<br />
+  <b>Canvas dimensions:</b> {{  canvasWidth }} x {{ canvasHeight }}<br />
+  <b>Image bounds:</b> ({{ left | number:'1.0-0' }}; {{ top | number:'1.0-0' }}; {{ right | number:'1.0-0' }}; {{ bottom | number:'1.0-0' }})
+</div>
